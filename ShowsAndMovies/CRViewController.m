@@ -8,7 +8,9 @@
 
 #import "CRViewController.h"
 
-@interface CRViewController ()
+@interface CRViewController ()<UITableViewDelegate, UITableViewDataSource>
+
+@property (strong, nonatomic) NSArray *showsAndMovies;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @end
@@ -18,13 +20,30 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+
+#pragma mark -
+#pragma mark - TableView Delegate Methods
+
+#pragma mark - TableView DataSource Methods
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return [self.showsAndMovies count];
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([UITableViewCell class]) forIndexPath:indexPath];
+    
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:NSStringFromClass([UITableViewCell class])];
+    }
+    cell.backgroundColor = [UIColor blueColor];
+    return cell;
 }
 
 @end

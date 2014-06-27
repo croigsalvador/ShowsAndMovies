@@ -9,6 +9,7 @@
 #import "CRViewController.h"
 
 @interface CRViewController ()
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @end
 
